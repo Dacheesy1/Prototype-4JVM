@@ -8,17 +8,20 @@ public class Enemy : MonoBehaviour
     public float speed = 3.0f;
     private Rigidbody EnemyRb;
     private GameObject Jorb;
+    //Jorb is the player :)
     // Start is called before the first frame update
     void Start()
     {
        EnemyRb = GetComponent<Rigidbody>();
-       player = GameObject.Find("Jorb"); 
+       Jorb = GameObject.Find("Jorb"); 
     }
 
     // Update is called once per frame
     void Update()
     {
-        EnemyRb.AddForce((Jorb.transform.position))
+        Vector3 lookDirection = (Jorb.transform.position - transform.position).normalized;
+
+        EnemyRb.AddForce(lookDirection * speed);
         
     }
 }
